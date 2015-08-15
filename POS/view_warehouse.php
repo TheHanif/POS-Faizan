@@ -13,8 +13,6 @@
 
 				$product = new product();
 				$all_product = $product->get_product();
-
-				// print_f($all_product);
 				if ($results) {
 				?>
 				<table border="1" cellpadding="5" cellspacing="0" class="table table-hover tableView">
@@ -28,15 +26,7 @@
 						<?php 
 						foreach($results as $res){ ?>
 						<tr>
-						<td>
-							<?php
-							foreach ($all_product as $products) {
-								if($products->p_id == $res->product_id){
-									echo $products->p_name;
-								}
-							}
-							?>
-						</td>
+						<td><?php echo $res->p_name; ?></td>
 						<td><?php echo $res->cost; ?></td>
 						<td><?php echo $res->price; ?></td>
 						<td><?php echo $res->quantity; ?></td>

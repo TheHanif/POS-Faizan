@@ -369,26 +369,26 @@
 			</div>
 			<div class="col-md-4 terminalControl">
 				<div class="col-md-6 nopadding">
-					<button id="holdBtn">Hold<br/><span>(caps h)</span></button>
+					<button id="holdBtn">Hold <span>(caps h)</span></button>
 				</div>
 				<div class="col-md-6 nopadding">
-					<button id="switchModal" data-toggle="modal" data-target="#myModal">switch<br/><span>(caps s)</span></button>
+					<button id="switchModal" data-toggle="modal" data-target="#myModal">switch <span>(caps s)</span></button>
 				</div>
 
 				<div class="col-md-12 nopadding">
-					<button>configuration setting<br/><span>(F3)</span></button>
+					<button>configuration setting <span>(F3)</span></button>
 				</div>
 
 				<div class="col-md-12 nopadding">
-					<button>delete<br/><span>(caps d)</span></button>
+					<button>delete <span>(caps d)</span></button>
 				</div>
 
 				<div class="col-md-12 nopadding">
-					<button>change / edit<br/><span>(caps e)</span></button>
+					<button>change / edit <span>(caps e)</span></button>
 				</div>
 
 				<div class="col-md-6 nopadding">
-					<button>REPORT<br/><span>(F2)</span></button>
+					<button>REPORT <span>(F2)</span></button>
 				</div>
 				<!--
 				<div class="col-md-4 nopadding">
@@ -396,11 +396,11 @@
 				</div>
 				-->
 				<div class="col-md-6 nopadding">
-					<button>card<br/><span>(caps c)</span></button>
+					<button>card <span>(caps c)</span></button>
 				</div>
 
 				<div class="col-md-12 nopadding">
-					<button class="bgcheckoutBtn" id="checkoutBtn">checkout<br/><span>(cltr + enter)</span></button>
+					<button class="bgcheckoutBtn" id="checkoutBtn">checkout <span>(cltr + enter)</span></button>
 				</div>
 
 				<div class="clearfix"></div>

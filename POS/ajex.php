@@ -1,7 +1,8 @@
 <?php 
 require_once 'common/init.php';
 $terminallist = new terminal();
-
+$product = new product();
+$warehouse = new warehouse();
 
 // Terminal Edit Function
 if(isset($_POST['action']) && $_POST['action'] == 'edit'){
@@ -27,5 +28,19 @@ if(isset($_POST['action']) && $_POST['action'] == 'add'){
 	return 'sucess';
 }
 
+// Get Single Product Detail for Add Product in Warehouse Page
+if(isset($_POST['action']) && $_POST['action'] == 'getproductdetail'){
+	$getproduct		= $_POST['getproduct'];
+	header('Content-Type: application/json');
+	echo json_encode($product->get_product($getproduct));
+}
+
+
+// Get Single Product Detail for Add Product in Inventory Page
+if(isset($_POST['action']) && $_POST['action'] == 'getwarehouseproductdetail'){
+	$getproduct		= $_POST['getproduct'];
+	header('Content-Type: application/json');
+	echo json_encode($warehouse->get_products($getproduct));
+}
 
 ?>

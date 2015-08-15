@@ -20,6 +20,7 @@ class warehouse extends database
 		$data['cost'] = $form['product_cost'];
 		$data['price'] = $form['product_quantity'];
 		$data['quantity'] = $form['product_price'];
+		$data['barcode'] = $form['product_barcode'];
 		$data['skutype'] = $form['product_type'];
 		$data['skuvalue'] = $form['product_volume'];
 	
@@ -39,12 +40,17 @@ class warehouse extends database
 		$data['cost'] = $form['product_cost'];
 		$data['price'] = $form['product_price'];
 		$data['quantity'] = $form['product_quantity'];
+	//	$data['barcode'] = $form['product_barcode'];
 		$data['skutype'] = $form['product_type'];
 		$data['skuvalue'] = $form['product_volume'];
 
 		$this->where('product_id', $product_id);
 		$this->update($this->table_name, $data);
 
+		if (!$this->row_count()) {
+			return false;
+		}
+		
 		// Update Cost & Price in Product Table
 		$dataproduct['p_cost'] = $form['product_cost'];
 		$dataproduct['p_price'] = $form['product_price'];
@@ -67,12 +73,14 @@ class warehouse extends database
 	public function get_products($ID = NULL)
 	{
 		if (isset($ID)) {
-			$this->where('id',$ID);
+			$this->inner_join('products', 'p', 'p.p_id = warehouse.product_id');
+			$this->where('product_id',$ID);
 			$this->from($this->table_name);
 			return $this->result();
 		}
 		else {
 			// $this->where('id',$ID);
+			$this->inner_join('products', 'p', 'p.p_id = warehouse.product_id');
 			$this->from($this->table_name);
 			return $this->all_results();
 		}

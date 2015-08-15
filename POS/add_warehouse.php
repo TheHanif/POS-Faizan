@@ -70,25 +70,33 @@
 			<div class="clear"></div>
 			<div class="col-md-6">	
 				<div class="form-group">
-					<label for="fname" class="col-sm-3 control-label">Cost: </label>
+					<label for="product_cost" class="col-sm-3 control-label">Cost: </label>
 					<div class="col-sm-8">
-						<input type="text" name="product_cost" value="<?php echo (isset($ID))? $product_result->cost : '' ?>" class="form-control <?php echo $product->p_cost; ?>" required>
+						<input type="text" name="product_cost" id="product_cost" value="<?php echo (isset($ID))? $product_result->cost : '' ?>" class="form-control <?php echo $product->p_cost; ?>" required>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-6">	
 				<div class="form-group">
-				    <label for="lname" class="col-sm-3 control-label">Price: </label>
+				    <label for="product_price" class="col-sm-3 control-label">Price: </label>
 					<div class="col-sm-8">
-						<input type="text" name="product_price" value="<?php echo (isset($ID))? $product_result->price : '' ?>" class="form-control <?php echo $product->p_price; ?>" required>
+						<input type="text" name="product_price" id="product_price" value="<?php echo (isset($ID))? $product_result->price : '' ?>" class="form-control <?php echo $product->p_price; ?>" required>
 					</div>
 				</div>
 			</div><!-- Col-md-6 Close -->
 			<div class="col-md-6">	
 				<div class="form-group">
-					<label for="email" class="col-sm-3 control-label">Quantity: </label>
+					<label for="product_quantity" class="col-sm-3 control-label">Quantity: </label>
 					<div class="col-sm-8">
-						<input type="text" name="product_quantity" value="<?php echo (isset($ID))? $product_result->quantity : '' ?>" class="form-control" required>
+						<input type="text" name="product_quantity"  value="<?php echo (isset($ID))? $product_result->quantity : '' ?>" class="form-control" required>
+					</div>
+				</div>
+			</div><!-- Col-md-6 Close -->
+			<div class="col-md-6">	
+				<div class="form-group">
+					<label for="product_barcode" class="col-sm-3 control-label">Barcode: </label>
+					<div class="col-sm-8">
+						<input type="text" name="product_barcode"  id="product_barcode" value="<?php echo (isset($ID))? $product_result->barcode : '' ?>" class="form-control" required disabled="disabled">
 					</div>
 				</div>
 			</div><!-- Col-md-6 Close -->

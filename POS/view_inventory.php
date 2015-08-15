@@ -20,17 +20,19 @@
 						<th>Product Price</th>
 						<th>Product Quantity</th>
 						<th>Product Barcode</th>
+						<th>Product Date</th>
 						<th>Action</th>
 					</tr>
 						<?php 
 						foreach($results as $res){
 						echo '<tr>';
 						echo '<td>'. $res->inv_id .'</td>';
-						echo '<td>'. $res->inv_name .'</td>';
+						echo '<td>'. $res->p_name .'</td>';
 						echo '<td>'. $res->inv_cost.'</td>';
 						echo '<td>'. $res->inv_price .'</td>';
 						echo '<td>'. $res->inv_quantity .'</td>';
 						echo '<td>'. $res->inv_barcode .'</td>';
+						echo '<td>'. $res->inv_ts .'</td>';
 						echo '<td><a href="add_inventory.php?id='.$res->inv_id.'"><span class="glyphicon glyphicon-pencil"></span></a></td>';
 						echo '</tr>';
 						}

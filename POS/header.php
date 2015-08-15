@@ -13,10 +13,33 @@
 	<script type="text/javascript">
  	$(document).ready(function(){
 
+ 		// Get Single Product Detail for Add Product in Warehouse Page
  		$("#product_id").on('change', function(event) {
  			event.preventDefault();
- 			console.log($(this).val());
+			var getproduct = $(this).val(); 			
+ 			$.post('ajex.php', {'getproduct': getproduct, 'action': 'getproductdetail'}, function(data) {
+        		$("#product_cost").val(data[0].p_cost);
+        		$("#product_price").val(data[0].p_price);
+        		$("#product_barcode").val(data[0].p_barcode);
+			});
  		});
+
+
+ 		// Get Single Product Detail for Add Product in Inventory Page
+ 		$("#warehouse_product_id").on('change', function(event) {
+ 			event.preventDefault();
+			var getproduct = $(this).val();
+			$.post('ajex.php', {'getproduct': getproduct, 'action': 'getwarehouseproductdetail'}, function(data) {
+        		console.log(data);
+        		$("#inv_name").val(data.p_name);
+        		$("#inv_cost").val(data.cost);
+        		$("#inv_price").val(data.price);
+        		$("#inv_quantity").val(data.quantity);
+        		$("#inv_barcode").val(data.barcode);
+        		$("#inv_id").val(data.product_id);
+			});
+ 		});
+ 		
 	});
 	</script>
 </head>

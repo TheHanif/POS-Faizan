@@ -10,7 +10,7 @@ if(isset($_GET['bc'])){
 		foreach($results as $res){
 			$barcode_detail = array (
 			'product_id' => $res->inv_id,
-			'name' => $res->inv_name,
+			'name' => $res->p_name,
 			'price' => $res->inv_price,
 			'quantity' => 1,
 			);

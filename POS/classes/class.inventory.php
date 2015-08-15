@@ -17,6 +17,7 @@ class inventory extends database
 		$data = array();
 
 		$data['inv_name'] = $form['inv_name'];
+		$data['inv_pid'] = $form['inv_id'];
 		$data['inv_cost'] = $form['inv_cost'];
 		$data['inv_price'] = $form['inv_price'];
 		$data['inv_quantity'] = $form['inv_quantity'];
@@ -48,6 +49,7 @@ class inventory extends database
 
 	public function inv_get($ID)
 	{
+		$this->inner_join('products', 'p', 'p.p_id = inventory.inv_pid');
 		$this->where('inv_id',$ID);
 		$this->from($this->table_name);
 
@@ -58,9 +60,11 @@ class inventory extends database
 	public function get_int($ID = NULL)
 	{
 		if (isset($ID)) {
+			$this->inner_join('products', 'p', 'p.p_id = inventory.inv_pid');
 			$this->where('inv_id',$ID);
 		}
 
+		$this->inner_join('products', 'p', 'p.p_id = inventory.inv_pid');
 		$this->from($this->table_name);
 
 		return $this->all_results();
@@ -69,6 +73,7 @@ class inventory extends database
 	public function get_product($barcode)
 	{
 		if (isset($barcode)) {
+			$this->inner_join('products', 'p', 'p.p_id = inventory.inv_pid');
 			$this->where('inv_barcode',$barcode);
 		}
 
