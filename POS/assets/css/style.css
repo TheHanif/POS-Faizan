@@ -70,7 +70,7 @@ header .userDetail span { text-align: right; font-size: 12px; font-style: italic
 header .logoutBtn	{ padding-top: 10px; }
 header .settingBtn	{ padding-top: 10px; }
 
-footer	{ background-color: #2f323b; padding: 10px; color: #fff; position: fixed; bottom: 0px; width: 100%;  }
+footer	{ background-color: #2f323b; padding: 10px; color: #fff; /* position: fixed; bottom: 0px; */ width: 100%;  }
 footer p { margin: 5px 0px; }
 
 /* Form CSS */
@@ -78,3 +78,8 @@ footer p { margin: 5px 0px; }
 .dashboardForm .dateTime { height: 34px; width: 106%; }
 .dashboardForm .submitBtn { background: #333; color: #fff; font-weight: normal; padding: 7px 50px !important; } 
 .dashboardForm input[type='file']{ background-color: transparent; border: none; margin-top: 7px; }
+
+
+
+.add-btn		{ background: url(../images/add-div.png) no-repeat scroll 11px 6px #333333 !important; color: #fff; padding: 16px !important; float:left; width:45px; }
+.minus-btn		{ background: url(../images/minus-div.png) no-repeat scroll 11px 6px #333333 !important; color:#fff; padding: 16px !important; float:left; width:45px; }

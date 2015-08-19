@@ -96,6 +96,9 @@ class Database {
             $this->_where = array();
             $this->_select = array();
             $this->_data = array();
+            $this->_joins = array();
+
+
             // $this->_query = '';
             // unset($this->_action, $this->_where, $this->_limit, $this->_table, $this->_select, $this->_joins);
         } catch (PDOException $e) {

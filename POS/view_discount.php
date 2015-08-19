@@ -4,36 +4,31 @@
 	<div class="container">
 		<div class="row">
 			<div class="tableHeading">
-				<p class="nomargin alignCenter">View Product in Warehouse</p>
+				<p class="nomargin alignCenter">View Discount</p>
 			</div>
 			<div class="col-md-12">	
 				<?php 
-				$warehouse = new warehouse();
-				$results = $warehouse->get_products();
+				$discount = new discount();
+				$results = $discount->get_products();
 
-
-				// print_f($results);
-
-				$product = new product();
-				$all_product = $product->get_product();
 				if ($results) {
 				?>
 				<table border="1" cellpadding="5" cellspacing="0" class="table table-hover tableView">
 					<tr>
-						<th>Product Name</th>
-						<th>Product Cost</th>
-						<th>Product Price</th>
-						<th>Product Quantity</th>
+						<th>Name</th>
+						<th>Discount Type</th>
+						<th>Discount Amount</th>
+						<th>Min Purchase</th>
 						<th>Action</th>
 					</tr>
 						<?php 
 						foreach($results as $res){ ?>
 						<tr>
 						<td><?php echo $res->p_name; ?></td>
-						<td><?php echo $res->cost; ?></td>
-						<td><?php echo $res->price; ?></td>
-						<td><?php echo $res->quantity; ?></td>
-						<td><a href="add_warehouse.php?id=<?php echo $res->id; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+						<td><?php echo $res->discount_type; ?></td>
+						<td><?php echo $res->discount_amount; ?></td>
+						<td><?php echo $res->min_purchase_qty; ?></td>
+						<td><a href="add_discount.php?id=<?php echo $res->id; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 						</tr>
 						<?php
 						}

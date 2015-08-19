@@ -40,6 +40,16 @@
 					<li><a href="add_supplier.php">Add Supplier</a></li>
 		          </ul>
 		        </li>
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Promotions <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		          	<li><a href="view_discount.php">View Discount</a></li>
+					<li><a href="add_discount.php">Add Discount</a></li>
+					<li role="separator" class="divider"></li>
+					<li><a href="view_offer.php">View Offer</a></li>
+					<li><a href="add_offer.php">Add Offer</a></li>
+		          </ul>
+		        </li>
 		        <li class="alert-info"><a href="terminal.php" style="color:#000;" target="_blank">Terminal</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->

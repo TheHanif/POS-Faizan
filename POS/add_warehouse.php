@@ -96,14 +96,14 @@
 				<div class="form-group">
 					<label for="product_barcode" class="col-sm-3 control-label">Barcode: </label>
 					<div class="col-sm-8">
-						<input type="text" name="product_barcode"  id="product_barcode" value="<?php echo (isset($ID))? $product_result->barcode : '' ?>" class="form-control" required disabled="disabled">
+						<input type="text" name="product_barcode"  id="product_barcode" value="<?php echo (isset($ID))? $product_result->barcode : '' ?>" class="form-control" required>
 					</div>
 				</div>
 			</div><!-- Col-md-6 Close -->
 			<div class="clear"></div>
 			<hr/>
 			<div class="col-md-12">
-				<h4>SKU Detail: </h4>
+				<h4>Product Detail: </h4>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">

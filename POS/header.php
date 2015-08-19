@@ -39,7 +39,7 @@
         		$("#inv_id").val(data.product_id);
 			});
  		});
- 		
+
 	});
 	</script>
 </head>

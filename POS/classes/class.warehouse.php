@@ -16,10 +16,10 @@ class warehouse extends database
 	{
 		$data = array();
 
-		$data['product_id'] = $form['product_name'];
+		$data['product_id'] = $form['product_id'];
 		$data['cost'] = $form['product_cost'];
-		$data['price'] = $form['product_quantity'];
-		$data['quantity'] = $form['product_price'];
+		$data['price'] = $form['product_price'];
+		$data['quantity'] = $form['product_quantity'];
 		$data['barcode'] = $form['product_barcode'];
 		$data['skutype'] = $form['product_type'];
 		$data['skuvalue'] = $form['product_volume'];
