@@ -56,7 +56,7 @@ class inventory extends database
 
 		return $this->result();
 	} // end of get
-
+ 
 
 	public function get_int($ID = NULL)
 	{
