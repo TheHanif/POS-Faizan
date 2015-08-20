@@ -32,10 +32,10 @@
 			$.post('ajex.php', {'getproduct': getproduct, 'action': 'getwarehouseproductdetail'}, function(data) {
         		console.log(data);
         		$("#inv_name").val(data.p_name);
-        		$("#inv_cost").val(data.cost);
-        		$("#inv_price").val(data.price);
-        		$("#inv_quantity").val(data.quantity);
-        		$("#inv_barcode").val(data.barcode);
+        		$("#inv_cost").val(data.warehouse_cost);
+        		$("#inv_price").val(data.warehouse_price);
+        		$("#inv_quantity").val(data.warehouse_quantity);
+        		$("#inv_barcode").val(data.warehouse_barcode);
         		$("#inv_id").val(data.product_id);
 			});
  		});

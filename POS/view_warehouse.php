@@ -10,12 +10,6 @@
 				<?php 
 				$warehouse = new warehouse();
 				$results = $warehouse->get_products();
-
-
-				// print_f($results);
-
-				$product = new product();
-				$all_product = $product->get_product();
 				if ($results) {
 				?>
 				<table border="1" cellpadding="5" cellspacing="0" class="table table-hover tableView">
@@ -30,10 +24,10 @@
 						foreach($results as $res){ ?>
 						<tr>
 						<td><?php echo $res->p_name; ?></td>
-						<td><?php echo $res->cost; ?></td>
-						<td><?php echo $res->price; ?></td>
-						<td><?php echo $res->quantity; ?></td>
-						<td><a href="add_warehouse.php?id=<?php echo $res->id; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+						<td><?php echo $res->warehouse_cost; ?></td>
+						<td><?php echo $res->warehouse_price; ?></td>
+						<td><?php echo $res->warehouse_quantity; ?></td>
+						<td><a href="add_warehouse.php?id=<?php echo $res->warehouse_id; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 						</tr>
 						<?php
 						}

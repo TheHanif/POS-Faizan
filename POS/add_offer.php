@@ -32,7 +32,7 @@
 			if (isset($ID)) {
 				$product_result = $offer->get_products($ID);
 				$offer_result	= $offer->get_offers($ID);
-				// print_f($product_result);
+				// print_f($offer_result);
 			}
 			?>
 
@@ -44,7 +44,7 @@
 						<?php
 						if(isset($ID)){ ?>
 							<input type="text" name="product_id" value="<?php echo (isset($ID))? $product_result->p_name : '' ?>" class="form-control" required disabled>
-							<input type="hidden" name="product_id" value="<?php echo (isset($ID))? $product_result->product_id : '' ?>" class="form-control" required>
+							<input type="hidden" name="product_id" value="<?php echo (isset($ID))? $product_result->p_id : '' ?>" class="form-control" required>
 						<?php
 						}
 						else { ?>
@@ -66,7 +66,7 @@
 				<div class="form-group">
 					<label for="min_purchase" class="col-sm-4 control-label">Min Purchase Quantity: </label>
 					<div class="col-sm-7">
-						<input type="text" name="min_purchase" value="<?php echo (isset($ID))? $product_result->min_purchase_qty : '' ?>" class="form-control" required>
+						<input type="text" name="min_purchase" value="<?php echo (isset($ID))? $product_result->discount_min_purchase_qty : '' ?>" class="form-control" required>
 					</div>
 				</div>
 			</div>
@@ -76,8 +76,8 @@
 					<label for="min_purchase" class="col-sm-3 control-label">Offer Status: </label>
 					<div class="col-sm-8">
 						<select name="status">
-							<option value="1" <?php if(isset($ID)){if($product_result->status == '1'){echo 'selected=selected';}}?>>Active</option>
-							<option value="0" <?php if(isset($ID)){if($product_result->status == '0'){echo 'selected=selected';}}?>>Deactive</option>
+							<option value="1" <?php if(isset($ID)){if($product_result->discount_status == '1'){echo 'selected=selected';}}?>>Active</option>
+							<option value="0" <?php if(isset($ID)){if($product_result->discount_status == '0'){echo 'selected=selected';}}?>>Deactive</option>
 						</select>
 					</div>
 				</div>
@@ -93,15 +93,42 @@
 			<hr/>
 			<div id="content1">
 				<?php 
-				foreach ($offer_result as $offer) {
+				if(isset($ID)){
+					foreach ($offer_result as $offer) {
+					?>
+					<div class="row">
+						<div class="col-md-12 row-el">
+							<div class="form-group">
+								<label for="min_purchase" class="col-md-1 control-label">Product: </label>
+								<div class="col-md-4">
+										<input type="text" value="<?php echo (isset($ID))? $offer->p_name : '' ?>" class="form-control" disabled >
+										<input type="hidden" name="offer[product_id][]" value="<?php echo (isset($ID))? $offer->offer_product_id : '' ?>" class="form-control" >
+								</div>
+								<label for="min_purchase" class="col-md-1 col-md-offset-1 control-label">Quantity: </label>
+								<div class="col-md-4">
+									<input type="text" name="offer[qty][]" value="<?php echo (isset($ID))? $offer->offer_product_quantity : '' ?>" class="form-control" >
+								</div>
+								<div class="col-md-1">
+									  <input type="button" class="btn minus-btn">
+								</div>
+							</div>
+						</div>
+					</div>
+					<?php
+					} 
+				}
+				else {
 				?>
 				<div class="row">
 					<div class="col-md-12 row-el">
 						<div class="form-group">
 							<label for="min_purchase" class="col-md-1 control-label">Product: </label>
 							<div class="col-md-4">
-									<input type="text" value="<?php echo (isset($ID))? $offer->p_name : '' ?>" class="form-control" disabled >
-									<input type="hidden" name="offer[product_id][]" value="<?php echo (isset($ID))? $offer->product_id : '' ?>" class="form-control" >
+									<select name="offer[product_id][]">
+										<?php foreach($all_product as $product) { ?>
+											<option value="<?php echo $product->p_id; ?>"><?php echo $product->p_name; ?></option>
+										<?php } ?>
+									</select>
 							</div>
 							<label for="min_purchase" class="col-md-1 col-md-offset-1 control-label">Quantity: </label>
 							<div class="col-md-4">
@@ -113,16 +140,18 @@
 						</div>
 					</div>
 				</div>
-				<?php
-				} 
+				<?php 
+				}
 				?>
+
+
 			</div><!-- Close # Content 1 -->
 
 			<div class="clear"></div>
 			<div class="col-md-6">
 				<div class="form-group">
-					<label class="col-sm-3 control-label"></label>
-					<div class="col-sm-8">
+					<label class="col-sm-2 control-label"></label>
+					<div class="col-sm-9">
 						<input type="hidden" name="type" value="offer" class="form-control" required>
 						<button type="submit" class="btn submitBtn" name="add_offer"><?php echo (isset($_GET['id']))? 'Update' : 'Add' ?> Offer</button>
 					</div>

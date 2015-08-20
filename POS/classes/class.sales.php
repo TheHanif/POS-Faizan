@@ -15,11 +15,11 @@ class sales extends database
 	public function sale_insert($form)
 	{
 		$data = array();
-		$data['bill_number'] = $form['bill_number'];
-		$data['shift_number'] = $form['user_shift_number'];
-		$data['terminal_number'] = $form['user_terminal_point_number'];
-		$data['payment'] = $form['payment_mode'];
-		$data['user_id'] = $form['user_id'];
+		$data['sale_bill_number'] = $form['bill_number'];
+		$data['sale_shift_number'] = $form['user_shift_number'];
+		$data['sale_terminal_number'] = $form['user_terminal_point_number'];
+		$data['sale_payment'] = $form['payment_mode'];
+		$data['sale_user_id'] = $form['user_id'];
 		
 		// Sales Insert in Sale Table
 		$this->insert($this->table_name, $data);
@@ -33,10 +33,10 @@ class sales extends database
 		// Sales Products Insert in Sale Products Table
 		if($sale_id){
 			foreach ($_SESSION['terminal_list'] as $key => $value) {
-				$product['product_id']			= $value[key($value)]['product_id'];
-				$product['product_price'] 		= $value[key($value)]['price'];
-				$product['product_quantity']	= $value[key($value)]['quantity'];
-				$product['sale_id']				= $sale_id;
+				$product['salepro_product_id']			= $value[key($value)]['product_id'];
+				$product['salepro_product_price'] 		= $value[key($value)]['price'];
+				$product['salepro_product_quantity']	= $value[key($value)]['quantity'];
+				$product['salepro_sale_id']				= $sale_id;
 				$this->insert('sale_product', $product);
 			}
 			return true;

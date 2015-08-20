@@ -23,6 +23,9 @@ $user_terminal_point_number = 13;
 // Bill Number
 $bill_number = 'Macro-QAR-1234';
 
+// Currency 
+$currency = 'Rs. ';
+
 // Product Volume Type
 $product_volume = array();
 

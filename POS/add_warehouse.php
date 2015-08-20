@@ -72,7 +72,7 @@
 				<div class="form-group">
 					<label for="product_cost" class="col-sm-3 control-label">Cost: </label>
 					<div class="col-sm-8">
-						<input type="text" name="product_cost" id="product_cost" value="<?php echo (isset($ID))? $product_result->cost : '' ?>" class="form-control <?php echo $product->p_cost; ?>" required>
+						<input type="text" name="product_cost" id="product_cost" value="<?php echo (isset($ID))? $product_result->warehouse_cost : '' ?>" class="form-control" required>
 					</div>
 				</div>
 			</div>
@@ -80,7 +80,7 @@
 				<div class="form-group">
 				    <label for="product_price" class="col-sm-3 control-label">Price: </label>
 					<div class="col-sm-8">
-						<input type="text" name="product_price" id="product_price" value="<?php echo (isset($ID))? $product_result->price : '' ?>" class="form-control <?php echo $product->p_price; ?>" required>
+						<input type="text" name="product_price" id="product_price" value="<?php echo (isset($ID))? $product_result->warehouse_price : '' ?>" class="form-control" required>
 					</div>
 				</div>
 			</div><!-- Col-md-6 Close -->
@@ -88,7 +88,7 @@
 				<div class="form-group">
 					<label for="product_quantity" class="col-sm-3 control-label">Quantity: </label>
 					<div class="col-sm-8">
-						<input type="text" name="product_quantity"  value="<?php echo (isset($ID))? $product_result->quantity : '' ?>" class="form-control" required>
+						<input type="text" name="product_quantity"  value="<?php echo (isset($ID))? $product_result->warehouse_quantity : '' ?>" class="form-control" required>
 					</div>
 				</div>
 			</div><!-- Col-md-6 Close -->
@@ -96,7 +96,7 @@
 				<div class="form-group">
 					<label for="product_barcode" class="col-sm-3 control-label">Barcode: </label>
 					<div class="col-sm-8">
-						<input type="text" name="product_barcode"  id="product_barcode" value="<?php echo (isset($ID))? $product_result->barcode : '' ?>" class="form-control" required>
+						<input type="text" name="product_barcode"  id="product_barcode" value="<?php echo (isset($ID))? $product_result->warehouse_barcode : '' ?>" class="form-control" required>
 					</div>
 				</div>
 			</div><!-- Col-md-6 Close -->
@@ -109,7 +109,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Type</label>
 					<div class="col-sm-8">
-						<input type="text" name="product_type" value="<?php echo (isset($ID))? $product_result->skutype : '' ?>" class="form-control" required>
+						<input type="text" name="product_type" value="<?php echo (isset($ID))? $product_result->warehouse_skutype : '' ?>" class="form-control" required>
 					</div>
 			  	</div>
 			</div>
@@ -120,7 +120,7 @@
 						<select name="product_volume">
 							<?php 
 							foreach($product_volume as $product_volume=>$value){ ?>
-							<option value="<?php echo $product_volume; ?>" <?php (isset($ID))? $pro = $product_result->skuvalue : ''; if(isset($ID)){if($product_volume == $pro){echo 'selected=selected';}}?>><?php echo $value; ?></option>
+							<option value="<?php echo $product_volume; ?>" <?php (isset($ID))? $pro = $product_result->warehouse_skuvalue : ''; if(isset($ID)){if($product_volume == $pro){echo 'selected=selected';}}?>><?php echo $value; ?></option>
 							<?php	
 							}
 							?>
@@ -141,15 +141,4 @@
 		</div><!-- Row Close -->
 	</div><!-- Container Close -->
 </section>
-
-<!--
-<form action="add_inventory.php<?php echo isset($ID)? ('?id='.$ID) : ''; ?> " method="post">
-	<label for="name">Item Name: <input type="text" name="inv_name" value="<?php echo (isset($ID))? $inventory_result->inv_name : '' ?>"></label><br>
-	<label for="cost">Cost: <input type="text" name="inv_cost" value="<?php echo (isset($ID))? $inventory_result->inv_cost : '' ?>"></label><br>
-	<label for="price">Price: <input type="text" name="inv_price" value="<?php echo (isset($ID))? $inventory_result->inv_price : '' ?>"></label><br>
-	<label for="quantity">Quantity: <input type="text" name="inv_quantity" value="<?php echo (isset($ID))? $inventory_result->inv_quantity : '' ?>"></label><br>
-	<label for="barcode">Barcode: <input type="text" name="inv_barcode" value="<?php echo (isset($ID))? $inventory_result->inv_barcode : '' ?>"></label><br><br>
-	<input type="submit" name="add_inventory" value="Add Item">
-</form>
--->
 <?php require_once 'footer.php'; ?>

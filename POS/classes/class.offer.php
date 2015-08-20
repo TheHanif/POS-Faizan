@@ -16,10 +16,10 @@ class offer extends database
 	public function insert_offer($form)
 	{
 		$data = array();
-		$data['product_id']			= $form['product_id'];
-		$data['min_purchase_qty']	= $form['min_purchase'];
-		$data['type'] 				= $form['type'];
-		$data['status']				= $form['status'];
+		$data['discount_product_id']		= $form['product_id'];
+		$data['discount_min_purchase_qty']	= $form['min_purchase'];
+		$data['discount_mode'] 				= $form['type'];
+		$data['discount_status']			= $form['status'];
 		
 		// Offer Insert in Discount Table
 		$this->insert($this->table_name, $data);
@@ -34,10 +34,10 @@ class offer extends database
 		if($offer_id){
 			foreach ($form['offer']['product_id'] as $key => $product_id) {
 				$offer = array();
-				$offer['promotion_id']		= $offer_id;
-				$offer['product_id']		= $product_id;
-				$offer['product_quantity']	= $form['offer']['qty'][$key];
-				$offer['status']			= 1;
+				$offer['offer_discount_id']		= $offer_id;
+				$offer['offer_product_id']		= $product_id;
+				$offer['offer_product_quantity']= $form['offer']['qty'][$key];
+				$offer['offer_status']			= 1;
 				$this->insert('offers', $offer);
 			}
 			return true;
@@ -53,28 +53,29 @@ class offer extends database
 		
 	
 		$data = array();
-		$data['product_id']			= $form['product_id'];
-		$data['min_purchase_qty']	= $form['min_purchase'];
-		$data['type'] 				= $form['type'];
-		$data['status']				= $form['status'];
+		$data['discount_product_id']		= $form['product_id'];
+		$data['discount_min_purchase_qty']	= $form['min_purchase'];
+		$data['discount_mode'] 				= $form['type'];
+		$data['discount_status']			= $form['status'];
 		
 		// Offer Update in Discount Table
-		$this->where('id', $id);
+		$this->where('discount_id', $id);
 		$this->update($this->table_name, $data);
 
+
 		// Offer Products Delete Only Latest Product for Offer Table
-		$this->where('promotion_id', $id);
-		$this->where('status', 1);
+		$this->where('offer_discount_id', $id);
+		$this->where('offer_status', 1);
 		$this->delete($this->table_offer, $num_rows = NULL);
 
 		// Offer Products Insert in Offer Table
 		if($form['offer']['product_id']){
 			foreach ($form['offer']['product_id'] as $key => $product_id) {
 				$offer = array();
-				$offer['promotion_id']		= $id;
-				$offer['product_id']		= $product_id;
-				$offer['product_quantity']	= $form['offer']['qty'][$key];
-				$offer['status']			= 1;
+				$offer['offer_discount_id']		= $id;
+				$offer['offer_product_id']		= $product_id;
+				$offer['offer_product_quantity']= $form['offer']['qty'][$key];
+				$offer['offer_status']			= 1;
 				$this->insert('offers', $offer);
 			}
 			return true;
@@ -88,16 +89,16 @@ class offer extends database
 	public function get_products($ID = NULL)
 	{
 		if (isset($ID)) {
-			$this->inner_join('products', 'p', 'p.p_id = discount.product_id');
-			$this->where('discount.id',$ID);
-			$this->where('discount.type','offer');
+			$this->inner_join('products', 'p', 'p.p_id = discount.discount_product_id');
+			$this->where('discount.discount_id',$ID);
+			$this->where('discount.discount_mode','offer');
 			$this->from($this->table_name);
 			return $this->result();
 		}
 		else {
 			// $this->where('id',$ID);
-			$this->inner_join('products', 'p', 'p.p_id = discount.product_id');
-			$this->where('type','offer');
+			$this->inner_join('products', 'p', 'p.p_id = discount.discount_product_id');
+			$this->where('discount_mode','offer');
 			$this->from($this->table_name);
 			return $this->all_results();
 		}
@@ -106,9 +107,9 @@ class offer extends database
 	public function get_offers($ID = NULL)
 	{
 		if (isset($ID)) {
-			$this->inner_join('products', 'pro', 'pro.p_id = offers.product_id');
-			$this->where('offers.promotion_id',$ID);
-			$this->where('offers.status',1);
+			$this->inner_join('products', 'pro', 'pro.p_id = offers.offer_product_id');
+			$this->where('offers.offer_discount_id',$ID);
+			$this->where('offers.offer_status',1);
 			$this->from($this->table_offer);
 			return $this->all_results();
 		}

@@ -61,20 +61,14 @@
 				    });
 				    // Display Value to Sub Total Amount
 				    $("#subtotalAmount").text(subtotal);
-
-				    // Sub Total All Discount Table and save in discount variable
-				    var discount = 0;
-				    $('.discounttotalAmt').each(function() {
-				        discount += parseInt($(this).val());
-				    });
 				    // Display Value to Discount Amount
-				    $("#discountAmount").text(parseFloat(discount).toFixed(2));
-				    
+				    var discounst = 0;
+				    $("#discountAmount").text(discounst);
 				    //Display Value to Tax Amount
 				    var tax = 0;
 				    $("#taxAmount").text(tax);
 				    //Display Value to Total Amount
-				    var totalamount = subtotal+tax - discount;
+				    var totalamount = subtotal+tax - discounst;
 			        $("#totalAmount").text(totalamount);
 			        $(".finalAmount").text('Rs. '+totalamount);
                 }
@@ -320,23 +314,13 @@
 						                    <div class="col-md-1 nopadding alignCenter"><?php echo $count; ?></div>
 						                    <div class="col-md-4 "><?php echo $value[$barcode]['name']; ?><a class="itemDelete" href="ajex.php?delete=<?php echo $key ?>" style="color:#fff;"><span class="glyphicon glyphicon-trash floatRight" aria-hidden="true"></span></a><input type="hidden" class="rowdelete" value="<?php echo $key ?>"/></div>
 						                    <div class="col-md-2 alignRight paddingright30 productPrice"><?php echo $price = number_format((float)$value[$barcode]['price'], 2, '.', '') ?></div>
-						                    <div class="col-md-2 alignCenter"><lable><?php
-						                    	$discount_type = $value[$barcode]['discount_type'];
-						                    	if($discount_type == 'flat'){
-						                    		echo $currency . $discount = $value[$barcode]['discount_amount'];
-						                    		$discount_product_amount = $discount;
-						                    	}
-						                    	else {
-						                    		echo $discount = $value[$barcode]['discount_amount'].'%';
-						                    		$discount_product_amount = $price * ($discount/100); 
-						                    	}
-						                    ?></lable><input type="text" class="discounttotalAmt" value="<?php echo $discount_product_amount*$value[$barcode]['quantity']; ?>"/></div>
+						                    <div class="col-md-2 alignCenter"><lable><?php echo $qty = $value[$barcode]['discount_amount']; ?></lable></div>
 						                    <div class="col-md-1 alignCenter"><lable><?php echo $qty = $value[$barcode]['quantity']; ?></lable></div>
-						                    <div class="col-md-2 alignRight paddingright30"><span class="subtotalAmtSpan"><?php echo $subtotal = number_format(((float)$price-$discount_product_amount) * $qty, 2, '.', ''); ?></span><input type="hidden" class="subtotalAmt" value="<?php echo $subtotal; ?>" /></div>
+						                    <div class="col-md-2 alignRight paddingright30"><span class="subtotalAmtSpan"><?php echo $subtotal = number_format((float)$price * $qty, 2, '.', ''); ?></span><input type="hidden" class="subtotalAmt" value="<?php echo $subtotal; ?>" /></div>
 						                    <div class="clearfix"></div>
 					                	</div>
 					                	<div class="productoffer">
-					                		<div class="col-md-5 col-md-offset-1"><?php echo $free_product = $value[$barcode]['offer_product_id']; ?></div>
+					                		<div class="col-md-5 col-md-offset-1"><?php echo $qty = $value[$barcode]['offer_product_id']; ?></div>
 						                    <div class="col-md-6 nopadding"></div>
 						                    <div class="clearfix"></div>
 					                	</div>

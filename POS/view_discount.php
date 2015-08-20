@@ -19,6 +19,7 @@
 						<th>Discount Type</th>
 						<th>Discount Amount</th>
 						<th>Min Purchase</th>
+						<th>Discount Status</th>
 						<th>Action</th>
 					</tr>
 						<?php 
@@ -27,8 +28,16 @@
 						<td><?php echo $res->p_name; ?></td>
 						<td><?php echo $res->discount_type; ?></td>
 						<td><?php echo $res->discount_amount; ?></td>
-						<td><?php echo $res->min_purchase_qty; ?></td>
-						<td><a href="add_discount.php?id=<?php echo $res->id; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+						<td><?php echo $res->discount_min_purchase_qty; ?></td>
+						<td><?php 
+							if($res->discount_status == '1'){
+								echo 'Active';
+							}
+							else {
+								echo 'Deactive';
+							}
+							?></td>
+						<td><a href="add_discount.php?id=<?php echo $res->discount_id; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 						</tr>
 						<?php
 						}

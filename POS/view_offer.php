@@ -4,7 +4,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="tableHeading">
-				<p class="nomargin alignCenter">View Discount</p>
+				<p class="nomargin alignCenter">View Offers</p>
 			</div>
 			<div class="col-md-12">	
 				<?php 
@@ -23,10 +23,10 @@
 						foreach($results as $res){ ?>
 						<tr>
 						<td><?php echo $res->p_name; ?></td>
-						<td><?php echo $res->min_purchase_qty; ?></td>
+						<td><?php echo $res->discount_min_purchase_qty; ?></td>
 						<td>
 							<?php 
-							if($res->status == '1'){
+							if($res->discount_status == '1'){
 								echo 'Active';
 							}
 							else {
@@ -34,7 +34,7 @@
 							}
 							?>
 						</td>
-						<td><a href="add_offer.php?id=<?php echo $res->id; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+						<td><a href="add_offer.php?id=<?php echo $res->discount_id; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 						</tr>
 						<?php
 						}

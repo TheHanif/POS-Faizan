@@ -16,13 +16,12 @@ class discount extends database
 	{
 		$data = array();
 
-		$data['product_id'] = $form['product_id'];
+		$data['discount_product_id'] = $form['product_id'];
 		$data['discount_type'] = $form['discount_type'];
 		$data['discount_amount'] = $form['discount_amount'];
-		$data['min_purchase_qty'] = $form['min_purchase'];
-		$data['type'] = $form['type'];
-		$data['status'] = $form['status'];
-		
+		$data['discount_min_purchase_qty'] = $form['min_purchase'];
+		$data['discount_mode'] = $form['type'];
+		$data['discount_status'] = $form['status'];
 
 		$this->insert($this->table_name, $data);
 
@@ -36,14 +35,14 @@ class discount extends database
 	
 		$data = array();
 
-		$data['product_id'] = $form['product_id'];
+		$data['discount_product_id'] = $form['product_id'];
 		$data['discount_type'] = $form['discount_type'];
 		$data['discount_amount'] = $form['discount_amount'];
-		$data['min_purchase_qty'] = $form['min_purchase'];
-		$data['type'] = $form['type'];
-		$data['status'] = $form['status'];
+		$data['discount_min_purchase_qty'] = $form['min_purchase'];
+		$data['discount_mode'] = $form['type'];
+		$data['discount_status'] = $form['status'];
 
-		$this->where('id', $id);
+		$this->where('discount_id', $id);
 		$this->update($this->table_name, $data);
 
 		return $this->row_count();
@@ -53,16 +52,16 @@ class discount extends database
 	public function get_products($ID = NULL)
 	{
 		if (isset($ID)) {
-			$this->inner_join('products', 'p', 'p.p_id = discount.product_id');
-			$this->where('id',$ID);
-			$this->where('type','discount');
+			$this->inner_join('products', 'p', 'p.p_id = discount.discount_product_id');
+			$this->where('discount_id',$ID);
+			$this->where('discount_mode','discount');
 			$this->from($this->table_name);
 			return $this->result();
 		}
 		else {
 			// $this->where('id',$ID);
-			$this->inner_join('products', 'p', 'p.p_id = discount.product_id');
-			$this->where('type','discount');
+			$this->inner_join('products', 'p', 'p.p_id = discount.discount_product_id');
+			$this->where('discount_mode','discount');
 			$this->from($this->table_name);
 			return $this->all_results();
 		}

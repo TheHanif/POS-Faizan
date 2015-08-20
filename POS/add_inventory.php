@@ -13,6 +13,7 @@
 
 			$warehouse = new warehouse();
 			$all_product_warehouse = $warehouse->get_products();
+			
 
 			$inventory = new inventory();
 			$ID = (isset($_GET['id']))? $_GET['id'] : NULL;

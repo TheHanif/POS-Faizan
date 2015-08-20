@@ -40,7 +40,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'getproductdetail'){
 if(isset($_POST['action']) && $_POST['action'] == 'getwarehouseproductdetail'){
 	$getproduct		= $_POST['getproduct'];
 	header('Content-Type: application/json');
-	echo json_encode($warehouse->get_products($getproduct));
+	echo json_encode($warehouse->get_products_detail($getproduct));
 }
 
 ?>

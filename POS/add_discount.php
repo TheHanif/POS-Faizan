@@ -45,7 +45,7 @@
 						<select name="product_id" id="product_id">
 							<?php 
 							foreach ($all_product as $product) { ?>
-							<option value="<?php echo $product->p_id; ?>"<?php (isset($ID))? $pro = $product_result->product_id : ''; if(isset($ID)){if($product->p_id == $pro){echo 'selected=selected';}}?>><?php echo $product->p_name; ?></option>
+							<option value="<?php echo $product->p_id; ?>"<?php (isset($ID))? $pro = $product_result->discount_product_id : ''; if(isset($ID)){if($product->p_id == $pro){echo 'selected=selected';}}?>><?php echo $product->p_name; ?></option>
 							<?php
 							}
 							?>
@@ -77,17 +77,27 @@
 				<div class="form-group">
 					<label for="min_purchase" class="col-sm-3 control-label">Min Purchase Quantity: </label>
 					<div class="col-sm-8">
-						<input type="text" name="min_purchase" value="<?php echo (isset($ID))? $product_result->min_purchase_qty : '' ?>" class="form-control" required>
+						<input type="text" name="min_purchase" value="<?php echo (isset($ID))? $product_result->discount_min_purchase_qty : '' ?>" class="form-control" required>
 					</div>
 				</div>
 			</div><!-- Col-md-6 Close -->
+			<div class="col-md-6">	
+				<div class="form-group">
+					<label for="min_purchase" class="col-sm-3 control-label">Offer Status: </label>
+					<div class="col-sm-8">
+						<select name="status">
+							<option value="1" <?php if(isset($ID)){if($product_result->discount_status == '1'){echo 'selected=selected';}}?>>Active</option>
+							<option value="0" <?php if(isset($ID)){if($product_result->discount_status == '0'){echo 'selected=selected';}}?>>Deactive</option>
+						</select>
+					</div>
+				</div>
+			</div>
 			<div class="clear"></div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label class="col-sm-3 control-label"></label>
 					<div class="col-sm-8">
 						<input type="hidden" name="type" value="discount" class="form-control" required>
-						<input type="hidden" name="status" value="1" class="form-control" required>
 						<button type="submit" class="btn submitBtn" name="add_discount"><?php echo (isset($_GET['id']))? 'Update' : 'Add' ?> Discount</button>
 					</div>
 			  	</div>
