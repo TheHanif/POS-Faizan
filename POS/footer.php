@@ -29,8 +29,7 @@
 									<div class="add-div form-group">\
 										<label for="min_purchase" class="col-md-1 control-label">Product: </label>\
 										<span class="col-md-4">\
-											<select name="offer[product_id][]">'+
-											<?php foreach($all_product as $product) { ?>'<option value="<?php echo $product->p_id; ?>"><?php echo $product->p_name; ?></option>'+<?php } ?>
+											<select name="offer[product_id][]">'+<?php foreach($all_product as $product) { ?>'<option value="<?php echo $product->p_id; ?>"><?php echo $product->p_name; ?></option>'+<?php } ?>
 											'</select>\
 										</span>\
 										<label for="min_purchase" class="col-md-1 col-md-offset-1 control-label">Quantity: </label>\

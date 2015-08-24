@@ -51,6 +51,14 @@
 		          </ul>
 		        </li>
 		        <li class="alert-info"><a href="terminal.php" style="color:#000;" target="_blank">Terminal</a></li>
+		        <li><a href="accounts.php">Accounts</a></li>
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Purchases<span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="">View Purchases</a></li>
+					<li><a href="add_purchase.php">Add Purchase</a></li>
+		          </ul>
+		        </li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->

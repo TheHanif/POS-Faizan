@@ -4,6 +4,14 @@ $terminallist = new terminal();
 $product = new product();
 $warehouse = new warehouse();
 
+
+// Terminal Remove Latest Scan Session Function
+if(isset($_POST['action']) && $_POST['action'] == 'removelatestscan'){
+	unset($_SESSION['barcode']);
+	unset($_SESSION['barcode_detail']);
+	return 'sucess';
+}
+
 // Terminal Edit Function
 if(isset($_POST['action']) && $_POST['action'] == 'edit'){
 	$itemqty		= $_POST['itemqty'];

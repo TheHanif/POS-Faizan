@@ -24,7 +24,7 @@
 					$results = $offer->insert_offer($_POST);
 				}
 				if ($results) {
-					echo '<div class="alert alert-success" role="alert"> Add Discount Sucessfully </div>';
+					echo '<div class="alert alert-success" role="alert"> Add Offer Sucessfully </div>';
 				}else{
 					echo '<div class="alert alert-danger" role="alert"> Error </div>';
 				}

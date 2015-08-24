@@ -123,7 +123,18 @@ class Database {
                     $c = $c[1];
                 }
 
-                $this->_query->bindValue(':' . $c.$ci, $value[0], $this->get_type($value[0]));
+                if (is_array($value[0])) {
+                    foreach ($value[0] as $rkey => $rvalue) {
+                        $this->_query->bindValue(':' . $c.($ci+$rkey), $rvalue, $this->get_type($rvalue));
+                    }
+                }else{
+                    $this->_query->bindValue(':' . $c.$ci, $value[0], $this->get_type($value[0]));
+                }
+
+                // $this->_query->bindValue(':' . $c.$ci, $value[0], $this->get_type($value[0]));
+                // $this->_query->bindValue(':' . $c.$ci, 1, $this->get_type(1));
+                // $this->_query->bindValue(':' . $c.($ci+1), 5, $this->get_type(5));
+
             }
         }
 
@@ -252,9 +263,15 @@ class Database {
                     $c = explode('.', $c);
                     $c = $c[1];
                 }
+                // $columns[] = $cn . ' ' . $v[1] . ' :' . $c.$ci;
+                // $columns[] = $cn . ' ' . $v[1] . ' :' . $c.$ci . ' and :' . $c.($ci+1);
 
-                $columns[] = $cn . ' ' . $v[1] . ' :' . $c.$ci;
-            }
+                if ($v[1] == 'BETWEEN') {
+                    $columns[] = $cn . ' ' . $v[1] . ' :' . $c.$ci . ' and :' . $c.($ci+1);
+                }else{
+                    $columns[] = $cn . ' ' . $v[1] . ' :' . $c.$ci;
+                }
+            } // end foreach
             $query .= implode(' AND ', $columns);
         }
         if ($this->_action == 'INSERT') {

@@ -20,6 +20,8 @@
                 var $scrollbar = $("#scrollbar1");
                 $scrollbar.tinyscrollbar();
                 subtotalcalc();
+                $(".calculator input").prop('disabled', true);
+                $calState = false;
 
                 // Add New Product with scan
                 $("#latest_product_submit").on('submit', function(event) {
@@ -34,6 +36,12 @@
 					    	$(this).find('.product').find('div').first().text((index+1));
 					    });
                 	});
+
+                	$.post('ajex.php', {'action': 'removelatestscan'}, function(data) {
+				    	$("#latest_product_submit").remove();
+				    	$(".calculator input").val("");
+						$(".calculator input").css('background', '#ffffff');
+					});
                 });
 
                 // Delete Single Item in Terminal List
@@ -57,15 +65,15 @@
                 	// Sub Total All Amount Table and save in subtotal variable
                 	var subtotal = 0;
 				    $('.subtotalAmt').each(function() {
-				        subtotal += parseInt($(this).val());
+				        subtotal += parseFloat($(this).val());
 				    });
 				    // Display Value to Sub Total Amount
-				    $("#subtotalAmount").text(subtotal);
+				    $("#subtotalAmount").text(parseFloat(subtotal).toFixed(2));
 
 				    // Sub Total All Discount Table and save in discount variable
 				    var discount = 0;
 				    $('.discounttotalAmt').each(function() {
-				        discount += parseInt($(this).val());
+				        discount += parseFloat($(this).val());
 				    });
 				    // Display Value to Discount Amount
 				    $("#discountAmount").text(parseFloat(discount).toFixed(2));
@@ -74,9 +82,10 @@
 				    var tax = 0;
 				    $("#taxAmount").text(tax);
 				    //Display Value to Total Amount
-				    var totalamount = subtotal+tax - discount;
-			        $("#totalAmount").text(totalamount);
-			        $(".finalAmount").text('Rs. '+totalamount);
+				    // var totalamount = subtotal+tax - discount;
+				    var totalamount = subtotal+tax;
+			        $("#totalAmount").text(parseFloat(totalamount).toFixed(2));
+			        $(".finalAmount").text('Rs. '+ parseFloat(totalamount).toFixed(2));
                 }
 
                 $(document).keypress(function(e) {
@@ -144,9 +153,10 @@
 				  }
 				  // Checkout Button 
 				  else if((e.keyCode == 10 || e.keyCode == 13) && e.ctrlKey) {
-				  	alert('Press Checkout');
+				  	// alert('Press Checkout');
 				  	var paymentmode = $("#paymentMode").text();
 				  	var cashamount = $(".calculator input").val();
+				  	// var discountamount = $("#paymentMode").text();
 				  	window.open("sales.php?payment_mode="+ paymentmode+"&amount="+ cashamount, "myWindowName", "width=800, height=600");
 				  	return false;
 				  }
@@ -273,15 +283,23 @@
 			<div class="col-md-8">
 				<div class="col-md-12 latestScan">
 					<?php 
-					if(isset($_SESSION['barcode_detail'])){ ?>
+					if(isset($_SESSION['barcode_detail'])){ 
+						$latest_product = $_SESSION['barcode_detail'];
+						?>
 						<form action="#" method="post" name="latest_product_submit" id="latest_product_submit">
 							<div class="col-md-10 nopadding">
-								<h1><?php echo $_SESSION['barcode_detail']['name']; ?></h1>
-								<p><?php echo $_SESSION['barcode_detail']['offer_product_id']; ?></p>
-								<p><?php echo $_SESSION['barcode']; ?></p>
+								<h1><?php echo $latest_product->p_name; ?></h1>
+								<?php 
+								if(isset($latest_product->offer_products)){
+									foreach($latest_product->offer_products as $offer_product_name){
+										echo '<p>'.$offer_product_name->p_name.'</p>';
+									}
+								}
+								?>
+								<p><?php echo $latest_product->inv_barcode; ?></p>
 							</div>
 							<div class="col-md-2 latestQty">
-								<input type="text" name="latestqty" id="latestqty" value="<?php echo $_SESSION['barcode_detail']['quantity']; ?>">
+								<input type="text" name="latestqty" id="latestqty" value="1">
 							</div>
 						</form>
 					<?php	
@@ -303,7 +321,7 @@
 	                    <li class="col-md-2 nopadding noborderRight">Total</li>
 	                    <div class="clearfix"></div>
                 	</ul>
-					<div id="scrollbar1">
+                	<div id="scrollbar1">
 			        <!--    <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div> -->
 			            <div class="viewport">
 			                <div class="overview">
@@ -318,27 +336,34 @@
 									<li class="col-md-12 nopadding product_list">
 					                    <div class="product" id="row_<?php echo $count; ?>">
 						                    <div class="col-md-1 nopadding alignCenter"><?php echo $count; ?></div>
-						                    <div class="col-md-4 "><?php echo $value[$barcode]['name']; ?><a class="itemDelete" href="ajex.php?delete=<?php echo $key ?>" style="color:#fff;"><span class="glyphicon glyphicon-trash floatRight" aria-hidden="true"></span></a><input type="hidden" class="rowdelete" value="<?php echo $key ?>"/></div>
-						                    <div class="col-md-2 alignRight paddingright30 productPrice"><?php echo $price = number_format((float)$value[$barcode]['price'], 2, '.', '') ?></div>
+						                    <div class="col-md-4 "><?php echo $value[$barcode]->p_name; ?><a class="itemDelete" href="ajex.php?delete=<?php echo $key ?>" style="color:#fff;"><span class="glyphicon glyphicon-trash floatRight" aria-hidden="true"></span></a><input type="hidden" class="rowdelete" value="<?php echo $key ?>"/></div>
+						                    <div class="col-md-2 alignRight paddingright30 productPrice"><?php echo $price = number_format((float)$value[$barcode]->inv_price, 2, '.', '') ?></div>
 						                    <div class="col-md-2 alignCenter"><lable><?php
-						                    	$discount_type = $value[$barcode]['discount_type'];
+						                    	$discount_type = $value[$barcode]->discount_type;
 						                    	if($discount_type == 'flat'){
-						                    		echo $currency . $discount = $value[$barcode]['discount_amount'];
+						                    		echo $currency . $discount = $value[$barcode]->discount_amount;
 						                    		$discount_product_amount = $discount;
 						                    	}
 						                    	else {
-						                    		echo $discount = $value[$barcode]['discount_amount'].'%';
+						                    		echo $discount = $value[$barcode]->discount_amount.'%';
 						                    		$discount_product_amount = $price * ($discount/100); 
 						                    	}
-						                    ?></lable><input type="text" class="discounttotalAmt" value="<?php echo $discount_product_amount*$value[$barcode]['quantity']; ?>"/></div>
-						                    <div class="col-md-1 alignCenter"><lable><?php echo $qty = $value[$barcode]['quantity']; ?></lable></div>
+						                    ?></lable><input type="hidden" class="discounttotalAmt" value="<?php echo $discount_product_amount*$value[$barcode]->quantity; ?>"/></div>
+						                    <div class="col-md-1 alignCenter"><lable><?php echo $qty = $value[$barcode]->quantity; ?></lable></div>
 						                    <div class="col-md-2 alignRight paddingright30"><span class="subtotalAmtSpan"><?php echo $subtotal = number_format(((float)$price-$discount_product_amount) * $qty, 2, '.', ''); ?></span><input type="hidden" class="subtotalAmt" value="<?php echo $subtotal; ?>" /></div>
 						                    <div class="clearfix"></div>
 					                	</div>
 					                	<div class="productoffer">
-					                		<div class="col-md-5 col-md-offset-1"><?php echo $free_product = $value[$barcode]['offer_product_id']; ?></div>
-						                    <div class="col-md-6 nopadding"></div>
-						                    <div class="clearfix"></div>
+					                		<?php if(isset($value[$barcode]->offer_products)){
+					                			$free_products = $value[$barcode]->offer_products; 
+						                			foreach ($free_products as $free_product) { ?>
+						                				<div class="col-md-5 col-md-offset-1"><?php echo $free_product->offer_product_quantity .' - '. $free_product->p_name; ?></div>
+							                    		<div class="col-md-6 nopadding"></div>
+							                    		<div class="clearfix"></div>
+						                    <?php
+					                				}
+					                			}
+					                		?>
 					                	</div>
 				                	</li><!-- One Product Close -->
 									<?php

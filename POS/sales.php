@@ -10,6 +10,9 @@ $form['user_id'] = $_SESSION['user']->id;
 $form['payment_mode'] = $_GET['payment_mode'];
 
 
+// Sale Insert Disable for Main reason is first offers item and discounted prise final
+// Report Print Section Completest
+/*
 $results = $sales->sale_insert($form);
 
 if ($results) {
@@ -17,7 +20,7 @@ if ($results) {
 }else{
 //	echo 'Error';
 }
-
+*/
 
 ?>
 
@@ -43,7 +46,7 @@ if ($results) {
 		    
 		    var total = $("#subtotalAmount").text(parseFloat(subtotal).toFixed(2));
 		    var cashbalance = $("#cashBalance").text();
-		    var cashpaid = subtotal+parseInt(cashbalance);
+		    var cashpaid = parseInt(cashbalance)+subtotal;
 		    $("#cashPaid").text(parseFloat(cashpaid).toFixed(2));
 		});
 	</script>
@@ -75,9 +78,10 @@ if ($results) {
 		
 		<div class="row">
 			<ul class="headingTable">
-                <li class="col-md-6">Description</li>
+                <li class="col-md-5">Description</li>
                 <li class="col-md-2 nopadding">Price</li>
-                <li class="col-md-2">Qty</li>
+                <li class="col-md-2 nopadding">Discount</li>
+                <li class="col-md-1">Qty</li>
                 <li class="col-md-2 nopadding noborderRight">Total</li>
                 <div class="clearfix"></div>
         	</ul>
@@ -90,14 +94,38 @@ if ($results) {
 					?>
 					<li class="col-md-12 nopadding product_list">
 	                    <div class="product">
-		                    <div class="col-md-6"><?php echo $value[$barcode]['name']; ?><a class="itemDelete" href="terminal_list.php?product_id=<?php echo $key ?>" style="color:#fff;"><span class="glyphicon glyphicon-trash floatRight" aria-hidden="true"></span></a><input type="hidden" class="rowdelete" value="<?php echo $key ?>"/></div>
-		                    <div class="col-md-2 alignCenter paddingright30 productPrice"><?php echo $price = number_format((float)$value[$barcode]['price'], 2, '.', '') ?></div>
-		                    <div class="col-md-2 alignCenter"><lable><?php echo $qty = $value[$barcode]['quantity']; ?></lable></div>
-		                    <div class="col-md-2 alignRight paddingright30"><span class="subtotalAmtSpan"><?php echo $subtotal = number_format((float)$price * $qty, 2, '.', ''); ?></span><input type="hidden" class="subtotalAmt" value="<?php echo $subtotal; ?>" /></div>
+		                    <div class="col-md-5"><?php echo $value[$barcode]->p_name; ?><a class="itemDelete" href="terminal_list.php?product_id=<?php echo $key ?>" style="color:#fff;"><span class="glyphicon glyphicon-trash floatRight" aria-hidden="true"></span></a><input type="hidden" class="rowdelete" value="<?php echo $key ?>"/></div>
+		                    <div class="col-md-2 alignCenter paddingright30 productPrice"><?php echo $price = number_format((float)$value[$barcode]->inv_price, 2, '.', '') ?></div>
+		                    <div class="col-md-2 alignCenter paddingright30 productPrice">
+							<?php
+		                    	$discount_type = $value[$barcode]->discount_type;
+		                    	if($discount_type == 'flat'){
+		                    		echo $currency . $discount = $value[$barcode]->discount_amount;
+		                    		$discount_product_amount = $discount;
+		                    	}
+		                    	else {
+		                    		echo $discount = $value[$barcode]->discount_amount.'%';
+		                    		$discount_product_amount = $price * ($discount/100); 
+		                    	}
+		                    ?>
+		                    </div>
+		                    <div class="col-md-1 alignCenter"><lable><?php echo $qty = $value[$barcode]->quantity; ?></lable></div>
+		                    <div class="col-md-2 alignRight paddingright30"><span class="subtotalAmtSpan"><?php echo $subtotal = number_format(((float)$price-$discount_product_amount) * $qty, 2, '.', ''); ?></span><input type="hidden" class="subtotalAmt" value="<?php echo $subtotal; ?>" /></div>
 		                    <div class="clearfix"></div>
 	                	</div>
 	                	<div class="productoffer">
-	                		<div class="col-md-6">Free Pencil</div>
+	                		<div class="col-md-6">
+	                			<?php if(isset($value[$barcode]->offer_products)){
+		                				$free_products = $value[$barcode]->offer_products; 
+			                			foreach ($free_products as $free_product) { ?>
+			                				<div class="col-md-5 col-md-offset-1"><?php echo $free_product->offer_product_quantity .' - '. $free_product->p_name; ?></div>
+				                    		<div class="col-md-6 nopadding"></div>
+				                    		<div class="clearfix"></div>
+			                    <?php
+		                				}
+		                			}
+		                		?>
+	                		</div>
 		                    <div class="col-md-6 nopadding"></div>
 		                    <div class="clearfix"></div>
 	                	</div>

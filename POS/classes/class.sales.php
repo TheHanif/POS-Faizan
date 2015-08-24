@@ -20,7 +20,7 @@ class sales extends database
 		$data['sale_terminal_number'] = $form['user_terminal_point_number'];
 		$data['sale_payment'] = $form['payment_mode'];
 		$data['sale_user_id'] = $form['user_id'];
-		
+	
 		// Sales Insert in Sale Table
 		$this->insert($this->table_name, $data);
 		if($this->row_count() > 0){
@@ -29,14 +29,20 @@ class sales extends database
 		else {
 			return false;
 		}
-		
+	
+
+		// print_f($_SESSION['terminal_list']);
 		// Sales Products Insert in Sale Products Table
 		if($sale_id){
 			foreach ($_SESSION['terminal_list'] as $key => $value) {
+
+				
 				$product['salepro_product_id']			= $value[key($value)]['product_id'];
 				$product['salepro_product_price'] 		= $value[key($value)]['price'];
 				$product['salepro_product_quantity']	= $value[key($value)]['quantity'];
 				$product['salepro_sale_id']				= $sale_id;
+
+				
 				$this->insert('sale_product', $product);
 			}
 			return true;
