@@ -23,7 +23,10 @@ class warehouse extends database
 		$data['warehouse_barcode'] = $form['product_barcode'];
 		$data['warehouse_skutype'] = $form['product_type'];
 		$data['warehouse_skuvalue'] = $form['product_volume'];
-			
+		
+		
+		print_f($data);
+		die();
 		$this->insert($this->table_name, $data);
 
 		return $this->row_count();

@@ -136,14 +136,9 @@
 					if (itemNumber != null) {
 					    var itemQuantity = prompt("Enter Quantity", "");
 					    var $overview = $('.overview');
-					    // $overview.find('#row_'+itemNumber).find('lable').text(itemQuantity);
-					    $overview.find('#row_'+itemNumber).find('.productQuantity').text(itemQuantity);
+					    $overview.find('#row_'+itemNumber).find('lable').text(itemQuantity);
 					    var productPrice = $overview.find('#row_'+itemNumber).find('.productPrice').text();
-					    var discount = $overview.find('#row_'+itemNumber).find('.discountAmt').val();
-					    var discountPrice = discount * itemQuantity;
-					    var totalPrice = (parseInt(productPrice)*itemQuantity)-discountPrice;
-					    console.log(discountPrice);
-					    console.log(totalPrice);
+					    var totalPrice = itemQuantity*parseInt(productPrice);
 					    $overview.find('#row_'+itemNumber).find('.subtotalAmt').val(totalPrice);
 					    $overview.find('#row_'+itemNumber).find('.subtotalAmtSpan').text(parseFloat(totalPrice).toFixed(2));
 					    var rowArray = $overview.find('#row_'+itemNumber).find('.rowdelete').val();
@@ -353,8 +348,8 @@
 						                    		echo $discount = $value[$barcode]->discount_amount.'%';
 						                    		$discount_product_amount = $price * ($discount/100); 
 						                    	}
-						                    ?></lable><input type="hidden" class="discountAmt" value="<?php echo $discount_product_amount; ?>"/><input type="hidden" class="discounttotalAmt" value="<?php echo $discount_product_amount*$value[$barcode]->quantity; ?>"/></div>
-						                    <div class="col-md-1 alignCenter"><lable class="productQuantity"><?php echo $qty = $value[$barcode]->quantity; ?></lable></div>
+						                    ?></lable><input type="hidden" class="discounttotalAmt" value="<?php echo $discount_product_amount*$value[$barcode]->quantity; ?>"/></div>
+						                    <div class="col-md-1 alignCenter"><lable><?php echo $qty = $value[$barcode]->quantity; ?></lable></div>
 						                    <div class="col-md-2 alignRight paddingright30"><span class="subtotalAmtSpan"><?php echo $subtotal = number_format(((float)$price-$discount_product_amount) * $qty, 2, '.', ''); ?></span><input type="hidden" class="subtotalAmt" value="<?php echo $subtotal; ?>" /></div>
 						                    <div class="clearfix"></div>
 					                	</div>

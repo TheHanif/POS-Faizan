@@ -59,6 +59,28 @@
 					<li><a href="add_purchase.php">Add Purchase</a></li>
 		          </ul>
 		        </li>
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Banks<span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="view_bank.php">View Banks</a></li>
+					<li><a href="add_bank.php">Add Bank</a></li>
+					<li role="separator" class="divider"></li>
+					<li><a href="add_transection.php">Add Bank Transection</a></li>
+		          </ul>
+		        </li>
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports<span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="sales_form.php">Sales Report</a></li>
+					<li><a href="#">Supplier Report</a></li>
+					<li><a href="#">Product Stock Report</a></li>
+					<li><a href="#">Product Expiry Report</a></li>
+					<li><a href="#">Sales Person</a></li>
+					<li><a href="#">Profit &amp; Loss Report</a></li>
+					<li><a href="#">Purchase Report</a></li>
+					<li><a href="#">Account Report</a></li>
+		          </ul>
+		        </li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->

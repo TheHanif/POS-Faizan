@@ -16,8 +16,6 @@ if(isset($_POST['action']) && $_POST['action'] == 'removelatestscan'){
 if(isset($_POST['action']) && $_POST['action'] == 'edit'){
 	$itemqty		= $_POST['itemqty'];
 	$arrayDelete 	= $_POST['rowarray'];
-	print_f($itemqty);
-	die();
 	$terminallist->update_qty_item($itemqty, $arrayDelete);
 	return 'sucess';
 }

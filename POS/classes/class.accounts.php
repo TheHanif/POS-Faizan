@@ -15,6 +15,7 @@ class accounts extends database
 		$this->profitloss = 'accounts_profitloss';	
 		$this->payable_receviable = 'accounts_payable_receviable';	
 		$this->purchases = 'accounts_purchases';	
+		$this->reconcilation = 'account_reconcilation';	
 	}
 
 
@@ -66,14 +67,20 @@ class accounts extends database
 
 
 	// Get Sales Report
-	public function get_sales($product_id = NULL, $to_date = NULL, $from_date = NULL)
+	public function get_sales_report($product_id = NULL, $to_date = NULL, $from_date = NULL)
 	{
 		if (isset($product_id)) {
-			// $this->where('sales_product_id',$product_id);
+			$this->where('sales_product_id',$product_id);
 		}
 		if (isset($to_date)) {
-			$this->where('sales_timestamp', array($to_date,$from_date), 'BETWEEN');
+			$this->where('sales_date',$to_date);
+			// $this->where('sales_date', array($to_date,$from_date), 'BETWEEN');
 		}
+
+		if (isset($to_date) && isset($from_date)) {
+			$this->where('sales_date', array($to_date,$from_date), 'BETWEEN');
+		}
+		$this->inner_join('products', 'p', 'p.p_id = accounts_sales.sales_product_id');
 		$this->from($this->sales);
 		return $this->all_results();
 	} // End of Sales Report
@@ -102,6 +109,20 @@ class accounts extends database
 		return $this->row_count();
 	} // end of Profit / Loss Insert
 
+	// Get Profit Loss Report
+	public function get_profitloss_report($product_id = NULL, $to_date = NULL, $from_date = NULL)
+	{
+		if (isset($product_id)) {
+			$this->where('pl_product_id',$product_id);
+		}
+		if (isset($to_date)) {
+			$this->where('pl_date', array($to_date,$from_date), 'BETWEEN');
+		}
+		$this->inner_join('products', 'p', 'p.p_id = accounts_profitloss.pl_product_id');
+		$this->from($this->profitloss);
+		return $this->all_results();
+	} // End of Profit Loss Report
+
 
 	/**
      * Payable / Receviable Insert
@@ -128,6 +149,29 @@ class accounts extends database
 		return $this->row_count();
 	} // End of Payable / Receviable Insert
 
+	// Get Payable / Receviable Report
+	public function get_payable_receviable_report($account = NULL, $account_type = NULL, $to_date = NULL, $from_date = NULL, $type = NULL, $status = NULL)
+	{
+		if (isset($account)) {
+			$this->where('pr_account',$account);
+		}
+		if (isset($account_type)) {
+			$this->where('pr_account_type',$account_type);
+		}
+		if (isset($to_date) || isset($from_date)) {
+			$this->where('pr_date', array($to_date,$from_date), 'BETWEEN');
+		}
+
+		if (isset($type)) {
+			$this->where('pr_type',$type);
+		}
+
+		if (isset($status)) {
+			$this->where('pr_status',$status);
+		}
+		$this->from($this->payable_receviable);
+		return $this->all_results();
+	} // End of Payable / Receviable Report
 
 	/**
      * Create Purchase Insert
@@ -149,6 +193,54 @@ class accounts extends database
 		$data['purchase_account'] = $account;
 		$data['purchase_account_type'] = $account_type;
 		$this->insert($this->purchases, $data);
+		return $this->row_count();
+	} // End of Create Purchase Insert
+
+	/* Checking
+	*	Product Wise
+	*	To Date Wise
+	*	From Date Wise
+	*	Account Wise
+	*	Account Type Wise
+	*/
+	// Get Purchase Report
+	public function get_purchase_report($product_name = NULL, $to_date = NULL, $from_date = NULL, $accounts = NULL, $account_type = NULL)
+	{
+		echo $product_name;
+		if (isset($product_name)) {
+			$this->where('purchase_product',$product_name);
+		}
+		if (isset($to_date)) {
+			$this->where('purchase_date', array($to_date,$from_date), 'BETWEEN');
+		}
+		if (isset($accounts)) {
+			$this->where('purchase_account', $accounts);
+		}
+		if (isset($account_type)) {
+			$this->where('purchase_account_type', $account_type);
+		}
+		$this->from($this->purchases);
+		return $this->all_results();
+	} // End of Purchase Report
+
+
+	/**
+     * Create Reconselation Insert
+     * @param  varchar	$amount
+     * @param  varchar 	$bank
+     * @param  varchar	$type Debit Credit
+     * @param  varchar	$date
+     * @return Result True / False
+     */
+	public function create_reconsilation($amount, $bank, $type, $date)
+	{
+		$data = array();
+		$data['recon_amount'] = $amount;
+		$data['recon_bank'] = $bank;
+		$data['recon_type'] = $type;
+		$data['recon_date'] = $date;
+
+		$this->insert($this->reconcilation, $data);
 		return $this->row_count();
 	} // End of Create Purchase Insert
 

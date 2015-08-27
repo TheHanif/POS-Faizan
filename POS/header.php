@@ -8,6 +8,7 @@
 	<link href="assets/css/general.css" rel="stylesheet">
 	<link href="assets/css/bootstrap.css" rel="stylesheet">
 	<link href="assets/css/bootstrap-theme.css" rel="stylesheet">
+	<link href="assets/css/bootstrap-datetimepicker.css" rel="stylesheet">
 	<link href="assets/css/style.css" rel="stylesheet">
 	<script type="text/javascript" src="assets/js/jquery.latest.js"></script>
 	<script type="text/javascript">

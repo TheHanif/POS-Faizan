@@ -21,7 +21,7 @@ class terminal extends database
 	// Update Quantity for Select Item (Edit or Change Button Function)
 	public function update_qty_item($itemqty, $arrayDelete){
 			foreach ($_SESSION['terminal_list'][$arrayDelete] as $key => $value) {
-				$_SESSION['terminal_list'][$arrayDelete][$key]['quantity'] = $itemqty;
+				$_SESSION['terminal_list'][$arrayDelete][$key]->quantity = $itemqty;
 			}
 			return 'sucess';	
 	}

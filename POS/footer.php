@@ -17,11 +17,12 @@
 </footer>
 	<!--Attched Bootstrap JS  -->
 	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/bootstrap-datetimepicker.js"></script>
 
 
 
 	<script type="text/javascript">
-		function addRow1() {
+		/*function addRow1() {
 				var div = document.createElement('div');
 			
 				div.className = 'row';
@@ -44,12 +45,23 @@
 				
 			
 				 document.getElementById('content1').appendChild(div);
-			}
+			} */
 		$(document).ready(function(){
 			// Minus Button function for Offer Page
- 			$("#content1").on('click', '.minus-btn', function() {
+ 		/*	$("#content1").on('click', '.minus-btn', function() {
  				$(this).parents('.row-el').parent('.row').remove();
  			});
+*/
+ 			// Type Calender
+ 			$('.form_date').datetimepicker({
+		        weekStart: 1,
+		        todayBtn:  1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				minView: 2,
+				forceParse: 0
+		    });
  		});
 	</script>
 </body>
