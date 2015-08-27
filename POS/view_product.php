@@ -8,16 +8,15 @@
 			</div>
 			<div class="col-md-12">	
 				<?php 
-				$id = $_GET['supplier_id'];
 				$product = new product();
-				$results = $product->get_supplier_product($id);
+				$results = $product->get_supplier_product();
 				if ($results) {
 				?>
-				<!--
+
 				<div class="col-md-12">
-					<span><a href="add_product.php?supplier_id=<?php echo $id; ?>" class="btn btn-default marginBottom floatRight">Add New Product</a></span>
+					<span><a href="add_product.php" class="btn btn-default marginBottom floatRight">Add New Product</a></span>
 				</div>
-				-->
+
 				<table border="1" cellpadding="5" cellspacing="0" class="table table-hover tableView">
 					<tr>
 						<th>Product Name</th>

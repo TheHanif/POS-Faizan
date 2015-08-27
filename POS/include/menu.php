@@ -34,10 +34,18 @@
 		          </ul>
 		        </li>
 		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="view_product.php">View Products</a></li>
+					<li><a href="add_product.php">Add Product</a></li>
+		          </ul>
+		        </li>
+		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Supplier <span class="caret"></span></a>
 		          <ul class="dropdown-menu">
 		            <li><a href="view_supplier.php">View Supplier</a></li>
 					<li><a href="add_supplier.php">Add Supplier</a></li>
+					<li><a href="add_supplier_bill.php">Add Supplier Bill</a></li>
 		          </ul>
 		        </li>
 		        <li class="dropdown">

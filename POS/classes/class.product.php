@@ -28,6 +28,10 @@ class product extends database
 		$data['p_skucrate'] = $form['p_skucrate'];
 		$data['p_skucarton'] = $form['p_skucarton'];
 		$data['p_skubag'] = $form['p_skubag'];
+		$data['p_bill_number'] = $form['p_bill_number'];
+
+		print_f($data);
+		die();
 
 		$this->insert($this->table_name, $data);
 
@@ -51,7 +55,7 @@ class product extends database
 		$data['p_skucrate'] = $form['p_skucrate'];
 		$data['p_skucarton'] = $form['p_skucarton'];
 		$data['p_skubag'] = $form['p_skubag'];
-
+		$data['p_bill_number'] = $form['p_bill_number'];
 
 		$this->where('p_id', $id);
 

@@ -9,9 +9,6 @@
 			
 			<?php 
 			$product = new product();
-
-			$suppliers = new supplier();
-			$all_bills = $suppliers->get_bills();
 			// Add New Product in Supplier
 			if(isset($_GET['supplier_id'])){
 				$supplier_id = $_GET['supplier_id'];
@@ -60,16 +57,9 @@
 					<label for="p_supplier" class="col-sm-3 control-label">Supplier Name: </label>
 					<div class="col-sm-8" style="margin-top:7px;">
 						<?php 
-						if(isset($ID)){ 
-							foreach($suppliers_list as $suplier){ 
-								(isset($ID))? $sup = $product_result->p_supplier : ''; 
-								if(isset($ID)){
-									if($suplier->sup_id == $sup){
-										echo $suplier->sup_name; 
-										echo '<input type="hidden" name="p_supplier" value="'.$suplier->sup_id.'">';
-									}
-								}
-							} 
+						if(isset($supplier_id)){ 
+						echo $suppliers_list->sup_name; 
+						echo '<input type="hidden" name="p_supplier" value="'.$suppliers_list->sup_id.'"> '; 
 						}
 						else { // Add Product Page ?>
 							<select name="p_supplier">
@@ -80,6 +70,15 @@
 								?> 
 							</select>
 						<?php
+						}
+						foreach($suppliers_list as $suplier){ 
+							(isset($ID))? $sup = $product_result->p_supplier : ''; 
+							if(isset($ID)){
+								if($suplier->sup_id == $sup){
+									echo $suplier->sup_name; 
+									echo '<input type="hidden" name="p_supplier" value="'.$suplier->sup_id.'">';
+								}
+							}
 						}
 						?>
 						
@@ -184,27 +183,6 @@
 				</div>
 			</div><!-- Col-md-6 Close -->
 			<div class="clear"></div>
-			<hr/>
-			<div class="col-md-12">
-				<h4>Supplier Bill Detail</h4>
-			</div>
-			<div class="col-md-6">	
-				<div class="form-group">
-				    <label for="p_skucrate" class="col-sm-3 control-label">Bill: </label>
-					<div class="col-sm-8">
-						<select name="p_bill_number" required>
-							<option value="">Select Bill</option>
-							<?php 
-							foreach($all_bills as $value) { ?>
-								<option value="<?php echo $value->bill_id;?>" <?php (isset($ID))? $pro = $product_result->p_bill_number : ''; if(isset($ID)){if($value->bill_id == $pro){echo 'selected=selected';}}?>><?php echo $value->bill_number; ?></option>	
-							<?php
-								}
-							?>
-						</select>
-					</div>
-				</div>
-			</div><!-- Col-md-6 Close -->
-			<div class="clear"></div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label class="col-sm-3 control-label"></label>
@@ -218,4 +196,14 @@
 	</div><!-- Container Close -->
 </section>
 
+<!--
+<form action="add_inventory.php<?php echo isset($ID)? ('?id='.$ID) : ''; ?> " method="post">
+	<label for="name">Item Name: <input type="text" name="inv_name" value="<?php echo (isset($ID))? $inventory_result->inv_name : '' ?>"></label><br>
+	<label for="cost">Cost: <input type="text" name="inv_cost" value="<?php echo (isset($ID))? $inventory_result->inv_cost : '' ?>"></label><br>
+	<label for="price">Price: <input type="text" name="inv_price" value="<?php echo (isset($ID))? $inventory_result->inv_price : '' ?>"></label><br>
+	<label for="quantity">Quantity: <input type="text" name="inv_quantity" value="<?php echo (isset($ID))? $inventory_result->inv_quantity : '' ?>"></label><br>
+	<label for="barcode">Barcode: <input type="text" name="inv_barcode" value="<?php echo (isset($ID))? $inventory_result->inv_barcode : '' ?>"></label><br><br>
+	<input type="submit" name="add_inventory" value="Add Item">
+</form>
+-->
 <?php require_once 'footer.php'; ?>

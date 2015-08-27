@@ -115,7 +115,8 @@ class inventory extends database
 		$result = (array)$result;
 		$result['quantity'] = '1';
 		$result = (object)$result;
-return $result;
+		
+		return $result;
 
 
 		 /*

@@ -192,6 +192,8 @@ class accounts extends database
 		$data['purchase_date'] = $date;
 		$data['purchase_account'] = $account;
 		$data['purchase_account_type'] = $account_type;
+		print_f($data);
+		die();
 		$this->insert($this->purchases, $data);
 		return $this->row_count();
 	} // End of Create Purchase Insert
