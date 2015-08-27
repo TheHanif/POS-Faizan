@@ -128,6 +128,7 @@
 					</div>
 			  	</div>
 			</div>
+<<<<<<< HEAD
 			<div class="clear"></div>
 			<hr/>
 			<div class="col-md-12">
@@ -151,6 +152,8 @@
 					</div>
 				</div>
 			</div><!-- Col-md-6 Close -->
+=======
+>>>>>>> parent of 5ddedce... Changes Warehouse Page Bill Number Add Option
 			<div class="clear"></div>
 			<div class="col-md-6">
 				<div class="form-group">

@@ -17,10 +17,14 @@
 		      <ul class="nav navbar-nav">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		        <li><a href="dashboard.php"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span></a></li>
 =======
 		        <li><a href="dashboard.php"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> Dashboard</a></li>
 >>>>>>> origin/master
+=======
+		        <li><a href="dashboard.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+>>>>>>> parent of 5ddedce... Changes Warehouse Page Bill Number Add Option
 =======
 		        <li><a href="dashboard.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
 >>>>>>> parent of 5ddedce... Changes Warehouse Page Bill Number Add Option

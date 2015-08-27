@@ -23,12 +23,17 @@ class warehouse extends database
 		$data['warehouse_barcode'] = $form['product_barcode'];
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$data['warehouse_qtytype'] = $form['p_qtytype'];
 =======
 		$data['warehouse_skutype'] = $form['product_type'];
 		$data['warehouse_skuvalue'] = $form['product_volume'];
 >>>>>>> origin/master
 		$data['warehouse_sp_bill'] = $form['sup_bill'];
+=======
+		$data['warehouse_skutype'] = $form['product_type'];
+		$data['warehouse_skuvalue'] = $form['product_volume'];
+>>>>>>> parent of 5ddedce... Changes Warehouse Page Bill Number Add Option
 =======
 		$data['warehouse_skutype'] = $form['product_type'];
 		$data['warehouse_skuvalue'] = $form['product_volume'];
@@ -56,6 +61,7 @@ class warehouse extends database
 		// $data['warehouse_barcode'] = $form['product_barcode'];
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$data['warehouse_qtytype'] = $form['p_qtytype'];
 		$data['warehouse_sp_bill'] = $form['sup_bill'];
 =======
@@ -64,6 +70,10 @@ class warehouse extends database
 		$data['warehouse_sp_bill'] = $form['sup_bill'];
 
 >>>>>>> origin/master
+=======
+		$data['warehouse_skutype'] = $form['product_type'];
+		$data['warehouse_skuvalue'] = $form['product_volume'];
+>>>>>>> parent of 5ddedce... Changes Warehouse Page Bill Number Add Option
 =======
 		$data['warehouse_skutype'] = $form['product_type'];
 		$data['warehouse_skuvalue'] = $form['product_volume'];
