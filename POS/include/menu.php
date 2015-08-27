@@ -15,7 +15,11 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
+<<<<<<< HEAD
 		        <li><a href="dashboard.php"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span></a></li>
+=======
+		        <li><a href="dashboard.php"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> Dashboard</a></li>
+>>>>>>> origin/master
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Warehouse<span class="caret"></span></a>
 		          <ul class="dropdown-menu">

@@ -21,7 +21,12 @@ class warehouse extends database
 		$data['warehouse_price'] = $form['product_price'];
 		$data['warehouse_quantity'] = $form['product_quantity'];
 		$data['warehouse_barcode'] = $form['product_barcode'];
+<<<<<<< HEAD
 		$data['warehouse_qtytype'] = $form['p_qtytype'];
+=======
+		$data['warehouse_skutype'] = $form['product_type'];
+		$data['warehouse_skuvalue'] = $form['product_volume'];
+>>>>>>> origin/master
 		$data['warehouse_sp_bill'] = $form['sup_bill'];
 		
 		
@@ -44,8 +49,15 @@ class warehouse extends database
 		$data['warehouse_price'] = $form['product_price'];
 		$data['warehouse_quantity'] = $form['product_quantity'];
 		// $data['warehouse_barcode'] = $form['product_barcode'];
+<<<<<<< HEAD
 		$data['warehouse_qtytype'] = $form['p_qtytype'];
 		$data['warehouse_sp_bill'] = $form['sup_bill'];
+=======
+		$data['warehouse_skutype'] = $form['product_type'];
+		$data['warehouse_skuvalue'] = $form['product_volume'];
+		$data['warehouse_sp_bill'] = $form['sup_bill'];
+
+>>>>>>> origin/master
 
 		$this->where('warehouse_id', $id);
 		$this->update($this->table_name, $data);
