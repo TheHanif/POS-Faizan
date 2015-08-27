@@ -129,6 +129,7 @@
 			  	</div>
 			</div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<div class="clear"></div>
 			<hr/>
 			<div class="col-md-12">
@@ -152,6 +153,8 @@
 					</div>
 				</div>
 			</div><!-- Col-md-6 Close -->
+=======
+>>>>>>> parent of 5ddedce... Changes Warehouse Page Bill Number Add Option
 =======
 >>>>>>> parent of 5ddedce... Changes Warehouse Page Bill Number Add Option
 			<div class="clear"></div>
