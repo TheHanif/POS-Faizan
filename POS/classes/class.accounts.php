@@ -72,14 +72,15 @@ class accounts extends database
 		if (isset($product_id)) {
 			$this->where('sales_product_id',$product_id);
 		}
-		if (isset($to_date)) {
+
+		if (!empty($to_date) && !empty($from_date)) {
+			$this->where('sales_date', array($to_date,$from_date), 'BETWEEN');
+		}else
+		if (!empty($to_date)) {
 			$this->where('sales_date',$to_date);
 			// $this->where('sales_date', array($to_date,$from_date), 'BETWEEN');
 		}
 
-		if (isset($to_date) && isset($from_date)) {
-			$this->where('sales_date', array($to_date,$from_date), 'BETWEEN');
-		}
 		$this->inner_join('products', 'p', 'p.p_id = accounts_sales.sales_product_id');
 		$this->from($this->sales);
 		return $this->all_results();
@@ -122,7 +123,6 @@ class accounts extends database
 		$this->from($this->profitloss);
 		return $this->all_results();
 	} // End of Profit Loss Report
-
 
 	/**
      * Payable / Receviable Insert

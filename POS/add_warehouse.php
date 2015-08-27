@@ -120,7 +120,7 @@
 						<select name="product_volume">
 							<?php 
 							foreach($product_volume as $product_volume=>$value){ ?>
-							<option value="<?php echo $product_volume; ?>" <?php (isset($ID))? $pro = $product_result->warehouse_skuvalue : ''; if(isset($ID)){if($product_volume == $pro){echo 'selected=selected';}}?>><?php echo $value; ?></option>
+								<option value="<?php echo $product_volume; ?>" <?php (isset($ID))? $pro = $product_result->warehouse_skuvalue : ''; if(isset($ID)){if($product_volume == $pro){echo 'selected=selected';}}?>><?php echo $value; ?></option>
 							<?php	
 							}
 							?>
@@ -128,6 +128,29 @@
 					</div>
 			  	</div>
 			</div>
+			<div class="clear"></div>
+			<hr/>
+			<div class="col-md-12">
+				<h4>Supplier Bill Detail</h4>
+			</div>
+			<div class="col-md-6">	
+				<div class="form-group">
+				    <label for="p_skucrate" class="col-sm-3 control-label">Bill: </label>
+					<div class="col-sm-8">
+						<select name="sup_bill" required>
+							<option value="">Select Bill</option>
+							<?php 
+							$suppliers = new supplier();
+							$all_bills = $suppliers->get_bills();
+							foreach($all_bills as $value) { ?>
+								<option value="<?php echo $value->bill_id;?>" <?php if(isset($ID) && $value->bill_id == $product_result->warehouse_sp_bill){echo 'selected=selected';}?>><?php echo $value->bill_number; ?></option>	
+							<?php
+								}
+							?>
+						</select>
+					</div>
+				</div>
+			</div><!-- Col-md-6 Close -->
 			<div class="clear"></div>
 			<div class="col-md-6">
 				<div class="form-group">
