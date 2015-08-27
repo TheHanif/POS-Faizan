@@ -10,6 +10,8 @@
 			<?php 
 			$product = new product();
 
+			$suppliers = new supplier();
+			$all_bills = $suppliers->get_bills();
 			// Add New Product in Supplier
 			if(isset($_GET['supplier_id'])){
 				$supplier_id = $_GET['supplier_id'];
@@ -178,6 +180,27 @@
 				    <label for="p_skubag" class="col-sm-3 control-label">Bag: </label>
 					<div class="col-sm-8">
 						<input type="text" name="p_skubag" value="<?php echo (isset($ID))? $product_result->p_skubag : '' ?>" class="form-control" required>
+					</div>
+				</div>
+			</div><!-- Col-md-6 Close -->
+			<div class="clear"></div>
+			<hr/>
+			<div class="col-md-12">
+				<h4>Supplier Bill Detail</h4>
+			</div>
+			<div class="col-md-6">	
+				<div class="form-group">
+				    <label for="p_skucrate" class="col-sm-3 control-label">Bill: </label>
+					<div class="col-sm-8">
+						<select name="p_bill_number" required>
+							<option value="">Select Bill</option>
+							<?php 
+							foreach($all_bills as $value) { ?>
+								<option value="<?php echo $value->bill_id;?>" <?php (isset($ID))? $pro = $product_result->p_bill_number : ''; if(isset($ID)){if($value->bill_id == $pro){echo 'selected=selected';}}?>><?php echo $value->bill_number; ?></option>	
+							<?php
+								}
+							?>
+						</select>
 					</div>
 				</div>
 			</div><!-- Col-md-6 Close -->

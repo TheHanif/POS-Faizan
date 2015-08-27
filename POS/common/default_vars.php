@@ -37,13 +37,10 @@ $product_volume['liter'] 	= 'Liter(s)';
 $product_volume['mg'] 		= 'Mg(s)';
 $product_volume['piece'] 	= 'Piece(s)';
 
-// SKU Detail Type
-$skutype = array();
+// Bank Detail Type
+$bank = array();
 
-$skutype['crate']	= 'Crate';
-$skutype['carton']	= 'Carton';
-$skutype['bag']	= 'Bag';
-$skutype['box']	= 'Box';
-
-
+$bank['hbl']	= 'Habib Bank Limited';
+$bank['abl']	= 'Allied Bank Limited';
+$bank['mcb']	= 'Muslim Commercial Bank';
 ?>

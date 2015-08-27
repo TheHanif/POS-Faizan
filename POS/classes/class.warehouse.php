@@ -22,16 +22,21 @@ class warehouse extends database
 		$data['warehouse_quantity'] = $form['product_quantity'];
 		$data['warehouse_barcode'] = $form['product_barcode'];
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$data['warehouse_qtytype'] = $form['p_qtytype'];
 =======
 		$data['warehouse_skutype'] = $form['product_type'];
 		$data['warehouse_skuvalue'] = $form['product_volume'];
 >>>>>>> origin/master
 		$data['warehouse_sp_bill'] = $form['sup_bill'];
+=======
+		$data['warehouse_skutype'] = $form['product_type'];
+		$data['warehouse_skuvalue'] = $form['product_volume'];
+>>>>>>> parent of 5ddedce... Changes Warehouse Page Bill Number Add Option
 		
 		
-		// print_f($data);
-		// die();
+		print_f($data);
+		die();
 		$this->insert($this->table_name, $data);
 
 		return $this->row_count();
@@ -50,6 +55,7 @@ class warehouse extends database
 		$data['warehouse_quantity'] = $form['product_quantity'];
 		// $data['warehouse_barcode'] = $form['product_barcode'];
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$data['warehouse_qtytype'] = $form['p_qtytype'];
 		$data['warehouse_sp_bill'] = $form['sup_bill'];
 =======
@@ -58,6 +64,10 @@ class warehouse extends database
 		$data['warehouse_sp_bill'] = $form['sup_bill'];
 
 >>>>>>> origin/master
+=======
+		$data['warehouse_skutype'] = $form['product_type'];
+		$data['warehouse_skuvalue'] = $form['product_volume'];
+>>>>>>> parent of 5ddedce... Changes Warehouse Page Bill Number Add Option
 
 		$this->where('warehouse_id', $id);
 		$this->update($this->table_name, $data);

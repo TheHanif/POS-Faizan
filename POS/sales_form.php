@@ -16,7 +16,7 @@
 			<form class="form-horizontal dashboardForm"  action="report_sales.php?from_date=$from_date&to_date=$to_date&product_id=$product_id" method="get">
 			<div class="col-md-6">	
 				<div class="form-group">
-					<label for="p_cost" class="col-sm-3 control-label">Start date: </label>
+					<label for="p_cost" class="col-sm-3 control-label">To Date: </label>
 					<div class="col-sm-8">
 						<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
 		                    <input class="form-control" size="16" type="text" value="">
@@ -29,7 +29,7 @@
 			<div class="clear"></div>
 			<div class="col-md-6">	
 				<div class="form-group">
-					<label for="p_name" class="col-sm-3 control-label">End Date: </label>
+					<label for="p_name" class="col-sm-3 control-label">From Date: </label>
 					<div class="col-sm-8">
 						<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
 		                    <input class="form-control" size="16" type="text" value="">
